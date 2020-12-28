@@ -1,0 +1,37 @@
+import {createStore} from 'redux';
+
+//STORE -> global
+
+//Action
+const increment = () => {
+  return {
+    type: 'INCREMENT',
+    info: 'increment the value'
+  }
+}
+
+const decrement = () => {
+  return {
+    type: 'DECREMENT',
+    info: 'decrement the value'
+  }
+}
+
+//Reducer
+const counter  = (state = 1, action) => {
+  switch(action.type){
+    case "INCREMENT":
+      return state+1;
+    case "DECREMENT":
+      return state-1;
+  }
+}
+
+//Creating store
+let store  = createStore(counter);
+
+//subscribe
+store.subscribe(() => console.log(store.getState()));
+
+//Dispatch
+store.dispatch(increment);
